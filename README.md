@@ -19,7 +19,9 @@ You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https
 Project's code starts off by getting data from **ADC** using **I2S** interface.
 
 Next I built pipeline for extraction features from time-series signal. I was based on Python's library [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/).
-As features for the model inputs I used MFCC. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/))
+As features for the model inputs I used MFCC. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)).
+
+As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not.
  
 
 ## Project structure
@@ -40,4 +42,10 @@ Bellow you can get acquainted with common structure of this repository.
 ### Data
 So, I operated with preprocessed dataset. I have used data from [this](https://www.kaggle.com/c/silero-audio-classifier/data) Kaggle competitions.
 I processed wav files with sampling rate is equal to 16000.
+
+## Simulation the FPGA realization
+
+## Results
+
+## Demonstration
 
