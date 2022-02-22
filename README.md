@@ -11,7 +11,7 @@ However, the huge reserves of Kintex resourses make it possible to try different
 The need to implement this algoritm based on FPGA is closely related to the need of the realization whole complex Speech Recognition system for the Smart Home tasks.
 And further works I will use more complex Deep Learning models to classification speech and more optimized structure for realization on FPGA.
 
-You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https://github.com/AlexKly/VegaVAD)
+You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https://github.com/AlexKly/VegaVAD).
 
 ## Project structure
 This repository contain sourse files for realization whole VAD system on FPGA and Jupyter Notebook for presentation result of the model processing, details of the extraction features and common pipeline model processing.
@@ -29,7 +29,7 @@ Bellow you can get acquainted with common structure of this repository.
 
 
 ### Data
-So, I operated with preprocessed dataset. I have used data from this Kaggle competitions/dataset [Paste here link].
+So, I operated with preprocessed dataset. I have used data from [this](https://www.kaggle.com/c/silero-audio-classifier/data) Kaggle competitions.
 I processed wav files with sampling rate is equal to 16000.
 
 
