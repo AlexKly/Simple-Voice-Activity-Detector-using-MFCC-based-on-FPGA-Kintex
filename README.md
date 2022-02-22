@@ -14,9 +14,22 @@ And further works I will use more complex Deep Learning models to classification
 
 ## Project structure
 This repository contain sourse files for realization whole VAD system on FPGA and Jupyter Notebook for presentation result of the model processing, details of the extraction features and common pipeline model processing.
+Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++. It's a simple example of the model architecture description.
+
+Bellow you can get acquainted with common structure of this repository.
+
+### FPGA
 
 
-So, I operated with preprocessed dataset. I have used data from this Kaggle competitions/dataset [Paste here link]
+### Python
+
+
+### C++ 
+
+
+### Data
+So, I operated with preprocessed dataset. I have used data from this Kaggle competitions/dataset [Paste here link].
+I processed wav files with sampling rate is equal to 16000.
 
 
 ## 
