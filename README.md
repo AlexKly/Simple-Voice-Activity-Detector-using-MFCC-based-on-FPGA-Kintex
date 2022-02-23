@@ -30,6 +30,8 @@ Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++. 
 
 Bellow you can get acquainted with common structure of this repository.
 
+![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
+
 ### Python: MFCC processing pipeline and DNN modeling
 
 
