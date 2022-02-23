@@ -30,22 +30,26 @@ Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++. 
 
 Bellow you can get acquainted with common structure of this repository.
 
-### FPGA
+### Python: MFCC processing pipeline and DNN modeling
 
 
-### Python
+### C++: Vivado HLS implemantation
 
 
-### C++ 
+### FPGA: VAD realization
 
 
 ### Data
 So, I operated with preprocessed dataset. I have used data from [this](https://www.kaggle.com/c/silero-audio-classifier/data) Kaggle competitions.
 I processed wav files with sampling rate is equal to 16000.
 
+## Processing result machine learning model
+
+## Implemantation result Vivado HLS
+
 ## Simulation the FPGA realization
 
-## Results
+## Demonstration and results
 
-## Demonstration
+## Extra
 
