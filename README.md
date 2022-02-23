@@ -29,6 +29,7 @@ This repository contain sourse files for realization whole VAD system on FPGA an
 Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++. It's a simple example of the model architecture description. The final result is user IP core, which implemented in the Vivado project.
 
 Bellow you can get acquainted with common structure of this repository.
+![Project structure](/путь/к/изображению.jpg)
 
 ### Python: MFCC processing pipeline and DNN modeling
 
