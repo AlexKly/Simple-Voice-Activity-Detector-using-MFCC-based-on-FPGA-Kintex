@@ -41,7 +41,8 @@ It makes possible to change the parameters and strcture the machine learning mod
 Bellow you can get acquainted with common structure of this repository.
 
 ### Python: MFCC processing pipeline and DNN modeling
-
+In Python part you can find Jupyter Notebook for testing model. Also I'm storing model instance with calculated weights and biases to use it in implementation.
+Also I attached some metrics to evaluate the model's processing. It can be possible to learn it and perform some changes to improve the model processing.
 
 ### C++: Vivado HLS implemantation
 
