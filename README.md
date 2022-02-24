@@ -21,19 +21,24 @@ Project's code starts off by getting data from **ADC** using **I2S** interface.
 Next I built pipeline for extraction features from time-series signal. I was based on Python's library [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/).
 As features for the model inputs I used MFCC. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)).
 
-As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not. I have trainded the model and I have used calculated weights and bias to develop HDL code using Vivado HLS and C++.
+As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not.
+I have trainded the model and I have used calculated weights and biases to develop HDL code using Vivado HLS and C++.
 
-As device input I have used MEMS microphone connected to ADC scheme. It, in turn, connected to FPGA Kintex 7 pins.
+As device input I have used MEMS microphone connected to ADC scheme.
+It, in turn, connected to FPGA Kintex 7 pins.
 
 As device output I have used LED indicator connected to FPGA Kintex 7 pins to monitor the processing VAD result.
 
 ## Project structure
 This repository contain sourse files for realization whole VAD system on FPGA and Jupyter Notebook for presentation result of the model processing, details of the extraction features and common pipeline model processing.
-Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++. It's a simple example of the model architecture description. The final result is user IP core, which implemented in the Vivado project.
+Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++.
+It's a simple example of the model architecture description.
+The final result is user IP core, which implemented in the Vivado project.
+
+In repository you can find saved model's weights and biases to use for implementation model in the FPGA structure using High-Level synthesis.
+It makes possible to change the parameters and strcture the machine learning model.
 
 Bellow you can get acquainted with common structure of this repository.
-
-![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
 ### Python: MFCC processing pipeline and DNN modeling
 
@@ -42,6 +47,7 @@ Bellow you can get acquainted with common structure of this repository.
 
 
 ### FPGA: VAD realization
+![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
 
 ### Data
