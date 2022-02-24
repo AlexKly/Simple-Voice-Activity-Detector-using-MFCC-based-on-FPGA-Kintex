@@ -42,12 +42,36 @@ Bellow you can get acquainted with common structure of this repository.
 
 ### Python: MFCC processing pipeline and DNN modeling
 In Python part you can find Jupyter Notebook for testing model. Also I'm storing model instance with calculated weights and biases to use it in implementation.
-Also I attached some metrics to evaluate the model's processing. It can be possible to learn it and perform some changes to improve the model processing.
+Also I attached some metrics to evaluate the model's processing.
+It can be possible to learn it and perform some changes to improve the model processing.
 
 ### C++: Vivado HLS implemantation
+Used Vivado HLS and C++.
 
 
 ### FPGA: VAD realization
+'''
+VAD_module: Vega_submain
+    port map (
+        g_fast_clk  => S_AXI_ACLK,
+        bclk        => bclk_in,
+        wclk        => wclk_in,
+        d_audio     => d_audio_in,
+        LSVC_Done   => LSVC_Done,
+        LSVC_Result => LSVC_Result
+    );
+        
+process(LSVC_Done) begin
+    if rising_edge(LSVC_Done) then
+        if (LSVC_Result = '0') then
+            Marker_On_LED_1 <= '0';
+        else
+            Marker_On_LED_1 <= '1';
+        end if;
+    end if;
+end process;
+'''
+
 ![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
 
