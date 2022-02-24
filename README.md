@@ -21,8 +21,11 @@ Project's code starts off by getting data from **ADC** using **I2S** interface.
 Next I built pipeline for extraction features from time-series signal. I was based on Python's library [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/).
 As features for the model inputs I used MFCC. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)).
 
-As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not.
- 
+As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not. I have trainded the model and I have used calculated weights and bias to develop HDL code using Vivado HLS and C++.
+
+As device input I have used MEMS microphone connected to ADC scheme. It, in turn, connected to FPGA Kintex 7 pins.
+
+As device output I have used LED indicator connected to FPGA Kintex 7 pins to monitor the processing VAD result.
 
 ## Project structure
 This repository contain sourse files for realization whole VAD system on FPGA and Jupyter Notebook for presentation result of the model processing, details of the extraction features and common pipeline model processing.
