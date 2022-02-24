@@ -50,7 +50,7 @@ Used Vivado HLS and C++.
 
 
 ### FPGA: VAD realization
-"""
+~~~
 VAD_module: Vega_submain
     port map (
         g_fast_clk  => S_AXI_ACLK,
@@ -70,7 +70,7 @@ process(LSVC_Done) begin
         end if;
     end if;
 end process;
-"""
+~~~
 
 ![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
