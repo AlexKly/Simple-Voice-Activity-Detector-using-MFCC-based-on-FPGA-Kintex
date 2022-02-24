@@ -45,11 +45,32 @@ In Python part you can find Jupyter Notebook for testing model. Also I'm storing
 Also I attached some metrics to evaluate the model's processing.
 It can be possible to learn it and perform some changes to improve the model processing.
 
+#### MFCC pipeline:
+TO DO how to get MFCC and deltas to train the model
+TO DO model structure
+
 ### C++: Vivado HLS implemantation
 Used Vivado HLS and C++.
 
+TO DO smth
+
 
 ### FPGA: VAD realization
+I divided the Vivado project on the parts.
+I attached the image below for more comfortable learning the structure.
+
+![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
+
+#### Vivado project structure:
+* Common modules: main file (Vega_submain.v) and I2S receiver (capture_audio_sample.v)
+* MFCC features pipeline part: you can find in 'Calculation MFCC features' for calculation MFCC features and delta for model's inputs
+* Machine learning pipeline part: implementation DNN module like a IP core generated using Vivado HLS
+* IP cores: all IP cores using in this project
+* TestBench: file (tb_Vega_submain.vhd) to test the whole project
+
+
+
+The intance of the LED indication using DNN solver signal:
 ~~~
 VAD_module: Vega_submain
     port map (
@@ -57,13 +78,13 @@ VAD_module: Vega_submain
         bclk        => bclk_in,
         wclk        => wclk_in,
         d_audio     => d_audio_in,
-        LSVC_Done   => LSVC_Done,
-        LSVC_Result => LSVC_Result
+        DNN_Done    => DNN_Done,
+        DNN_Result  => DNN_Result
     );
         
-process(LSVC_Done) begin
-    if rising_edge(LSVC_Done) then
-        if (LSVC_Result = '0') then
+process(DNN_Done) begin
+    if rising_edge(DNN_Done) then
+        if (DNN_Result = '0') then
             Marker_On_LED_1 <= '0';
         else
             Marker_On_LED_1 <= '1';
@@ -71,8 +92,8 @@ process(LSVC_Done) begin
     end if;
 end process;
 ~~~
+Add it in the main part and connect to FPGA output pin.
 
-![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
 
 ### Data
