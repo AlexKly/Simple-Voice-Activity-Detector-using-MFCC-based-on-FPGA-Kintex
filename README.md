@@ -58,7 +58,7 @@ e^{i\pi} + 1 = 0
 ```
 and line math $`a^2 + b^2 = c^2`$.
 
-$(\cosx+\sinx)^2=\cos^2x+\sin^2x+2\sinx\cosx$
+\[y(t) = x(t) - \alpha x(t-1)\]
 
 
 
