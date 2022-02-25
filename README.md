@@ -52,9 +52,11 @@ Steps to get MFCC:
 
 A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the FFT and also improve the Signal-to-Noise Ratio (SNR).
 
+Display math:
 ```math
-SE = \frac{\sigma}{\sqrt{n}}
+e^{i\pi} + 1 = 0
 ```
+and line math $`a^2 + b^2 = c^2`$.
 
 
 
