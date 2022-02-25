@@ -52,9 +52,7 @@ Steps to get MFCC:
 
 A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the FFT and also improve the Signal-to-Noise Ratio (SNR).
 
-<img src="https://latex.codecogs.com/svg.image?\bg_white&space;\inline&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t-1)" title="\bg_white \inline y(t) = x(t) - \alpha x(t-1)" />
-
-
+<img src="https://latex.codecogs.com/png.image?\dpi{100}&space;\bg_white&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t-1)" title="\bg_white y(t) = x(t) - \alpha x(t-1)" />
 
 
 
