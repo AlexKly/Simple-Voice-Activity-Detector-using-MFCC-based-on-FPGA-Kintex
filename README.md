@@ -98,6 +98,13 @@ Bellow are the graphs of the magnitude and power spectrum:
 ![Power spectrum]("Power spectrum")
 
 5. Energy on frame:
+After calculation power spectrum, we need to calculate energy per frame and to append to MFCC vector later.
+
+To calculate energe om the frame, we use following equation:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;E&space;=&space;\sum_{i}^{N_{frames}}P_i" title="\bg_white E = \sum_{i}^{N_{frames}}P_i" />
+
+where P_i - power spectrum on the i-th frame.
 
 6. Filter Banks:
 
