@@ -44,10 +44,22 @@ Bellow you can get acquainted with common structure of this repository.
 In Python part you can find Jupyter Notebook for testing model. Also I'm storing model instance with calculated weights and biases to use it in implementation.
 Also I attached some metrics to evaluate the model's processing.
 It can be possible to learn it and perform some changes to improve the model processing.
+All calculations provided with help python_speech_features library, but when we talk about HDL realization we need to jump right in 
 
 #### MFCC pipeline:
-TO DO how to get MFCC and deltas to train the model
-TO DO model structure
+Steps to get MFCC:
+1. Pre-emphasis or filtering:
+
+A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the FFT and also improve the Signal-to-Noise Ratio (SNR).
+
+$$
+y(t) = x(t) - \alpha x(t-1)
+$$
+
+
+
+
+
 
 ### C++: Vivado HLS implemantation
 Used Vivado HLS and C++.
@@ -67,8 +79,6 @@ I attached the image below for more comfortable learning the structure.
 * Machine learning pipeline part: implementation DNN module like a IP core generated using Vivado HLS
 * IP cores: all IP cores using in this project
 * TestBench: file (tb_Vega_submain.vhd) to test the whole project
-
-
 
 The intance of the LED indication using DNN solver signal:
 ~~~
@@ -93,8 +103,6 @@ process(DNN_Done) begin
 end process;
 ~~~
 Add it in the main part and connect to FPGA output pin.
-
-
 
 ### Data
 So, I operated with preprocessed dataset. I have used data from [this](https://www.kaggle.com/c/silero-audio-classifier/data) Kaggle competitions.
