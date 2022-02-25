@@ -54,6 +54,19 @@ A pre-emphasis filter is useful in several ways: balance the frequency spectrum 
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t-1)" title="\bg_white y(t) = x(t) - \alpha x(t-1)" />
 
+2. Framing:
+
+3. Window:
+
+4. Fourier-Transform and Power Spectrum:
+
+5. Energy on frame:
+
+6. Filter Banks:
+
+7. Mel-frequency Cepstral Coefficients (MFCCs):
+
+8. Deltas:
 
 
 
