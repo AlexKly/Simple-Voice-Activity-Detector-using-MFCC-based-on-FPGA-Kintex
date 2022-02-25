@@ -61,10 +61,12 @@ y(t) - preemphased (output) signal,
 alpha - filter coefficient. Typical values are 0.95 - 0.97.
 
 Bellow are the graphs of the signal before and after filtering:
+
 ![Original signal]("Original signal")
 ![Pre-emphased signal]("Pre-emphased signal")
 
 2. Framing:
+
 After pre-emphasis, we need to split signal into short-time frames. 
 The rationale behind this step is that frequencies in a signal change over time, so in most cases it doesn’t make sense to do the Fourier transform across the entire signal in that we would lose the frequency contours of the signal over time.
 To avoid that, we can safely assume that frequencies in a signal are stationary over a very short period of time.
@@ -74,6 +76,7 @@ Bellow is the graph of the single frame:
 ![Single frame]("Single frame")
 
 3. Window:
+
 After framing the signal, we apply a window function to each frame (In our case it's Hamming window function).
 
 There are several reasons why we need to apply a window function to the frames, notable to counteract the assumption made by the FFT that the data if infinite and to reduce spectral leakage.
