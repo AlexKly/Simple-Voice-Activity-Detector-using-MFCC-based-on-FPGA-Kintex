@@ -107,6 +107,9 @@ where P_i - power spectrum on the i-th frame,
 
 FrameLength - Samples number in the frame.
 
+The graph of the energy changing on the frames is shown bellow:
+![Energy of the signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Energy%20on%20frame.PNG "Energy of the signal")
+
 6. Filter Banks:
 
 7. Mel-frequency Cepstral Coefficients (MFCCs):
