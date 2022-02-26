@@ -136,11 +136,27 @@ After applying the filter bank to the power spectrum of the signal, we obtain th
 
 7. Mel-frequency Cepstral Coefficients (MFCCs):
 
+It turns out that filter bank coefficients computed in the previous step are highly correlated, which could be problematic in some machine learning algorithms.
+Therefore, we can apply Discrete Cosine Transform (DCT) to decorrelate the filter bank coefficients and yield a compressed representation of the filter banks.
 
+The resulting MFCCs:
+![MFCCs](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/MFCC%20spectrogram.PNG "MFCCs")
 
 8. Deltas:
 
+Also known as differential and acceleration coefficients.
+The MFCC feature vector describes only the power spectral envelope of a single frame, but it seems like speech would also have information in the dynamics i.e. what are the trajectories of the MFCC coefficients over time.
+It turns out that calculating the MFCC trajectories and appending them to the original feature vector increases ASR performance by quite a bit (if we have 12 MFCC coefficients, we would also get 12 delta coefficients, which would combine to give a feature vector of length 24).
 
+To calculate the delta coefficients, the following formula is used:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;d_{t}&space;=&space;\frac{\sum_{n=1}^{N}n(c_{t&space;&plus;&space;n}&space;-&space;c_{t&space;-&space;n})}{2\sum_{n=1}^{N}n^{2}}" title="\bg_white d_{t} = \frac{\sum_{n=1}^{N}n(c_{t + n} - c_{t - n})}{2\sum_{n=1}^{N}n^{2}}" />
+
+where d_t is a delta coefficient, from frame t computed in terms of the static coefficients c_{t+N}  to c_{t-N}.
+A typical value for N is 2. Delta-Delta (Acceleration) coefficients are calculated in the same way, but they are calculated from the deltas, not the static coefficients.
+
+The result combined MFCC and Delta-Delta is shown bellow:
+![MFCC + Deltas](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/MFCC%2BDeltas%20spectrogram.PNG "MFCC + Deltas")
 
 ### C++: Vivado HLS implemantation
 Used Vivado HLS and C++.
