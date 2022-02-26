@@ -110,9 +110,33 @@ FrameLength - Samples number in the frame.
 The graph of the energy changing on the frames is shown bellow:
 ![Energy of the signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Energy%20on%20frame.PNG "Energy of the signal")
 
+Eventually, we need to apply log operation to energy massive.
+
 6. Filter Banks:
 
+The final step to computing filter banks is applying triangular filters on a Mel-scale to the power spectrum to extract frequency bands.
+The Mel-scale aims to mimic the non-linear human ear perception of sound, by being more discriminative at lower frequencies and less discriminative at higher frequencies.
+We can convert between Hertz (f) and Mel (m) using the following equations:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;m&space;=&space;2595log_{10}(1&plus;\frac{f}{700})&space;" title="\bg_white m = 2595log_{10}(1+\frac{f}{700}) " />
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;f&space;=&space;700(10^{\frac{m}{2595}}&space;-&space;1)" title="\bg_white f = 700(10^{\frac{m}{2595}} - 1)" />
+
+Each filter in the filter bank is triangular having a response of 1 at the center frequency and decrease linearly towards 0 till it reaches the center frequencies of the two adjacent filters where the response is 0, as shown in this figure:
+
+![Filter bank on a Mel-Scale](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Filter%20bank%20on%20a%20Mel-Scale.PNG "Filter bank on a Mel-Scale")
+
+This can be modeled by the following equation (taken from here):
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;H_{m}(k)&space;=&space;\begin{cases}0&space;&&space;\text{&space;if&space;}&space;k&space;<&space;f(m&space;-&space;1)&space;\\\frac{k&space;-&space;f(m&space;-&space;1)}{f(m)&space;-&space;f(m&space;-&space;1)}&space;&&space;\text{&space;if&space;}&space;f(m&space;-&space;1)&space;\leqslant&space;k&space;<&space;f(m)&space;\\1&space;&&space;\text{&space;if&space;}&space;k&space;=&space;f(m)&space;\\\frac{f(m&space;&plus;&space;1)&space;-&space;k}{f(m&space;&plus;&space;1)&space;-&space;f(m)}&space;&&space;\text&space;{&space;if&space;}&space;f(m)&space;<&space;k&space;\leq&space;&space;f(m&plus;1)&space;\\0&space;&&space;\text&space;{&space;if&space;}&space;k&space;>&space;f(m&space;&plus;&space;1)\end{cases}" title="\bg_white H_{m}(k) = \begin{cases}0 & \text{ if } k < f(m - 1) \\\frac{k - f(m - 1)}{f(m) - f(m - 1)} & \text{ if } f(m - 1) \leqslant k < f(m) \\1 & \text{ if } k = f(m) \\\frac{f(m + 1) - k}{f(m + 1) - f(m)} & \text { if } f(m) < k \leq f(m+1) \\0 & \text { if } k > f(m + 1)\end{cases}" />
+
+After applying the filter bank to the power spectrum of the signal, we obtain the following spectrogram:
+
+![Spectrogram of the Signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/FilterBanks%20Spectrogram.PNG "Spectrogram of the Signal")
+
 7. Mel-frequency Cepstral Coefficients (MFCCs):
+
+
 
 8. Deltas:
 
