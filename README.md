@@ -62,8 +62,8 @@ alpha - filter coefficient. Typical values are 0.95 - 0.97.
 
 Bellow are the graphs of the signal before and after filtering:
 
-![Original signal]("Original signal")
-![Pre-emphased signal]("Pre-emphased signal")
+![Original signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Original%20signal.PNG "Original signal")
+![Pre-emphased signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Pre-emphased%20signal.PNG "Pre-emphased signal")
 
 2. Framing:
 
@@ -73,7 +73,7 @@ To avoid that, we can safely assume that frequencies in a signal are stationary 
 Therefore, by doing a Fourier transform over this short-time frame, we can obtain a good approximation of the frequency contours of the signal by concatenating adjacent frames.
 
 Bellow is the graph of the single frame:
-![Single frame]("Single frame")
+![Single frame](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Single%20frame.PNG "Single frame")
 
 3. Window:
 
