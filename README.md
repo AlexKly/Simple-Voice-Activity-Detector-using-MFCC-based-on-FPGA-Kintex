@@ -92,10 +92,9 @@ where x_i is the i-th frame of signal x(t),
 
 N - number of the points FFT.
 
-Bellow are the graphs of the magnitude and power spectrum:
+Bellow is the graph of the power spectrum:
 
-![Magnitude spectrum]("Magnitude spectrum")
-![Power spectrum]("Power spectrum")
+![Power spectrum](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Power%20spectrum.PNG "Power spectrum")
 
 5. Energy on frame:
 After calculation power spectrum, we need to calculate energy per frame and to append to MFCC vector later.
