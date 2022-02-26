@@ -52,8 +52,67 @@ Steps to get MFCC:
 
 A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the FFT and also improve the Signal-to-Noise Ratio (SNR).
 
-<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t-1)" title="\bg_white y(t) = x(t) - \alpha x(t-1)" />
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t&space;-&space;1)" title="\bg_white y(t) = x(t) - \alpha x(t - 1)" />
 
+where x(t) - original (input) signal,
+
+y(t) - preemphased (output) signal,
+
+alpha - filter coefficient. Typical values are 0.95 - 0.97.
+
+Bellow are the graphs of the signal before and after filtering:
+
+![Original signal]("Original signal")
+![Pre-emphased signal]("Pre-emphased signal")
+
+2. Framing:
+
+After pre-emphasis, we need to split signal into short-time frames. 
+The rationale behind this step is that frequencies in a signal change over time, so in most cases it doesn’t make sense to do the Fourier transform across the entire signal in that we would lose the frequency contours of the signal over time.
+To avoid that, we can safely assume that frequencies in a signal are stationary over a very short period of time.
+Therefore, by doing a Fourier transform over this short-time frame, we can obtain a good approximation of the frequency contours of the signal by concatenating adjacent frames.
+
+Bellow is the graph of the single frame:
+![Single frame]("Single frame")
+
+3. Window:
+
+After framing the signal, we apply a window function to each frame (In our case it's Hamming window function).
+
+There are several reasons why we need to apply a window function to the frames, notable to counteract the assumption made by the FFT that the data if infinite and to reduce spectral leakage.
+
+4. Fourier-Transform and Power Spectrum:
+
+After windowing each frame we can do an N-point FFT on each frame to calculate the frequency spectrum, which is also called Short-Time Fourier-Transform (STFT).
+And then compute the power spectrum using the following equation:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;P&space;=&space;\frac{\left|&space;FFT(x_i)&space;\right|^2}{N}" title="\bg_white P = \frac{\left| FFT(x_i) \right|^2}{N}" />
+
+where x_i is the i-th frame of signal x(t),
+
+N - number of the points FFT.
+
+Bellow are the graphs of the magnitude and power spectrum:
+
+![Magnitude spectrum]("Magnitude spectrum")
+![Power spectrum]("Power spectrum")
+
+5. Energy on frame:
+After calculation power spectrum, we need to calculate energy per frame and to append to MFCC vector later.
+
+To calculate energe om the frame, we use following equation:
+
+<img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;E&space;=&space;\sum_{i}^{FrameLength}P_i" title="\bg_white E = \sum_{i}^{FrameLength}P_i" />
+
+where P_i - power spectrum on the i-th frame,
+
+FrameLength - Samples number in the frame.
+
+6. Filter Banks:
+
+7. Mel-frequency Cepstral Coefficients (MFCCs):
+
+8. Deltas:
 
 
 
