@@ -206,6 +206,9 @@ So, I operated with preprocessed dataset. I have used data from [this](https://w
 I processed wav files with sampling rate is equal to 16000.
 
 ## Processing result machine learning model
+![VAD result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/VAD%20result.PNG)
+
+![ROC-AUC curve](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/AUC-ROC%20result.PNG)
 
 ## Implemantation result Vivado HLS
 
