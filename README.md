@@ -163,6 +163,9 @@ Used Vivado HLS and C++.
 
 TO DO smth
 
+![Utilization Estimates](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Utilization%20Estimates.PNG)
+
+![Interface](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Interface.PNG)
 
 ### FPGA: VAD realization
 I divided the Vivado project on the parts.
