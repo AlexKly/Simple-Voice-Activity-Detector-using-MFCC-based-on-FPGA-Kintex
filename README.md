@@ -221,16 +221,24 @@ Add it in the main part and connect to FPGA output pin.
 So, I operated with preprocessed dataset. I have used data from [this](https://www.kaggle.com/c/silero-audio-classifier/data) Kaggle competitions.
 I processed wav files with sampling rate is equal to 16000.
 
+## Requirement
+Its already possible to add description
+
 ## Processing result machine learning model
+Its already possible to add description
 ![VAD result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/VAD%20result.PNG)
 
 ![ROC-AUC curve](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/AUC-ROC%20result.PNG)
 
 ## Implemantation result Vivado HLS
+Not yet
 
 ## Simulation the FPGA realization
+Not yet
 
 ## Demonstration and results
+Not yet
 
 ## Extra
+Not yet
 
