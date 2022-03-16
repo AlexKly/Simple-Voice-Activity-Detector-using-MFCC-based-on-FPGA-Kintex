@@ -159,13 +159,24 @@ The result combined MFCC and Delta-Delta is shown bellow:
 ![MFCC + Deltas](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/MFCC%2BDeltas%20spectrogram.PNG "MFCC + Deltas")
 
 ### C++: Vivado HLS implemantation
-Used Vivado HLS and C++.
+The Vivado HLS is quick and quiet simple approach to implement the DNN model in FPGA.
+When the model is learnt you can get model's weights and biases.
+Next, you can code ~~~predict()~~~ funtion (forward propagation) using C++.
 
-TO DO smth
+After ascertain that C++ code works right, we can go to the next step.
+The Vivado HLS generate achive with your model implementaion like a archive which you can use in the Vivado project.
+
+Below is shown resources required by the module and module's structure of the input/output ports:
 
 ![Utilization Estimates](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Utilization%20Estimates.PNG)
 
 ![Interface](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Interface.PNG)
+
+Also I attached links to tutorial how to use Vivado HLS: 
+* [Tutorial](https://www.so-logic.net/documents/upload/Basic_HLS_Tutorial.pdf)
+* [Xilinx documentation](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2014_2/ug871-vivado-high-level-synthesis-tutorial.pdf)
+
+Later, it will be described how to add the generated module to the project.
 
 ### FPGA: VAD realization
 I divided the Vivado project on the parts.
