@@ -172,6 +172,8 @@ Below is shown resources required by the module and module's structure of the in
 
 ![Interface](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Interface.PNG)
 
+It's really not optimized method for design, but I use the Kintex 7 and I don't worry about resourser in my test project because it has really a huge logic unit number.
+
 Also I attached links to tutorial how to use Vivado HLS: 
 * [Tutorial](https://www.so-logic.net/documents/upload/Basic_HLS_Tutorial.pdf)
 * [Xilinx documentation](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2014_2/ug871-vivado-high-level-synthesis-tutorial.pdf)
