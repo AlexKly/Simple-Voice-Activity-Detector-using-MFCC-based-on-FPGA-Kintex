@@ -161,7 +161,7 @@ The result combined MFCC and Delta-Delta is shown bellow:
 ### C++: Vivado HLS implemantation
 The Vivado HLS is quick and quiet simple approach to implement the DNN model in FPGA.
 When the model is learnt you can get model's weights and biases.
-Next, you can code ~~~predict()~~~ funtion (forward propagation) using C++.
+Next, you can code `predict()` funtion (forward propagation) using C++.
 
 After ascertain that C++ code works right, we can go to the next step.
 The Vivado HLS generate achive with your model implementaion like a archive which you can use in the Vivado project.
