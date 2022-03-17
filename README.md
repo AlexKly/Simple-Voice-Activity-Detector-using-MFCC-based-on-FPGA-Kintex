@@ -225,10 +225,18 @@ I processed wav files with sampling rate is equal to 16000.
 Its already possible to add description
 
 ## Processing result machine learning model
-Its already possible to add description
+In the modeling part we can select satisfying model structure for VAD.
+In the *DNN modeling.ipynb* I perform preparation data to fit the model and estimate results several DNN structures.
+The binary classification mean accuracy is fluacting between 0.8 - 0.9 depended from structure.
+I have used accuracy and ROC-AUC metrics to estimate models.
+You can see plots with result of the processing VAD alghorithm on the validation real signal and ROC-AUC curves for several estimated models.
+
 ![VAD result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/VAD%20result.PNG)
 
 ![ROC-AUC curve](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/AUC-ROC%20result.PNG)
+
+In the *DNN modeling.ipynb* I prepared printing the C++ arrays with model weights to simplify transfer it in C++ code.
+You can see that the DNN processing results is not perfect and there is enough Type I error (False positive) and Type II error (False negative), but it's appropriate for me.
 
 ## Implemantation result Vivado HLS
 Not yet
