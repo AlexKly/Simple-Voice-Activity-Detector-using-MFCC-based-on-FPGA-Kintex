@@ -229,6 +229,7 @@ In the modeling part we can select satisfying model structure for VAD.
 In the *DNN modeling.ipynb* I perform preparation data to fit the model and estimate results several DNN structures.
 The binary classification mean accuracy is fluacting between 0.8 - 0.9 depended from structure.
 I have used accuracy and ROC-AUC metrics to estimate models.
+
 You can see plots with result of the processing VAD alghorithm on the validation real signal and ROC-AUC curves for several estimated models.
 
 ![VAD result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/VAD%20result.PNG)
