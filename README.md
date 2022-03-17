@@ -236,7 +236,7 @@ You can see plots with result of the processing VAD alghorithm on the validation
 ![ROC-AUC curve](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/AUC-ROC%20result.PNG)
 
 In the *DNN modeling.ipynb* I prepared printing the C++ arrays with model weights to simplify transfer it in C++ code.
-You can see that the DNN processing results is not perfect and there is enough Type I error (False positive) and Type II error (False negative), but it's appropriate for me.
+You can see that the DNN processing results is not perfect and there are enough Type I errors (False positive) and Type II errors (False negative), but it's appropriate for me.
 
 ## Implemantation result Vivado HLS
 Not yet
