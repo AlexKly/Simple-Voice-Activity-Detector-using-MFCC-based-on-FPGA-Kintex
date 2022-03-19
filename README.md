@@ -1,10 +1,10 @@
 # Simple Voice Activity Detector (VAD) using MFCC features based on FPGA Kintex 7
 ## Introducing
-The Voice Activity Detector is detection system of the presence or absence of human speech segments in input audio signal, used in the speech processing systems.
-To perform classification the speech in to two classes, the system need to process input audio samples in to features containing hidden infomation about speech.
+The **Voice Activity Detector** is detection system of the presence or absence of human speech segments in input audio signal, used in the speech processing systems.
+To perform classification the speech into two classes, the system need to process input audio samples in to features containing hidden infomation about speech.
 And then the system can classifier several segments based on get features using Machine Learning approches.
 
-This my first and test version of the VAD based on the FPGA Kintex 7.
+This my first and test version of the **VAD** based on the FPGA **Kintex 7**.
 This version is not optimized in terms of FPGA resoures and I used quite simple model to reach the classification task.
 However, the huge reserves of Kintex resourses make it possible to try different structures of algoritms that are not resourse-optimized.
 
@@ -18,22 +18,22 @@ You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https
 
 Project's code starts off by getting data from **ADC** using **I2S** interface.
 
-Next I built pipeline for extraction features from time-series signal. I was based on Python's library [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/).
-As features for the model inputs I used MFCC. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)).
+Next I built pipeline for extraction features from time-series signal. I was based on *Python's* library [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/).
+As features for the model inputs I used **MFCC**. (You can learn more [here](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)).
 
-As speech segments solver I have used DNN with defined structure. Solver get on the input scaling MFCC features and return for each speech segment label: absence human speech or not.
-I have trainded the model and I have used calculated weights and biases to develop HDL code using Vivado HLS and C++.
+As speech segments solver I have used **DNN** with defined structure. Solver get on the input scaling **MFCC** features and return for each speech segment label: absence human speech or not.
+I have trainded the model and I have used calculated weights and biases to develop HDL code using *Vivado HLS* and *C++*.
 
 As device input I have used MEMS microphone connected to ADC scheme.
-It, in turn, connected to FPGA Kintex 7 pins.
+It, in turn, connected to FPGA **Kintex 7** pins.
 
-As device output I have used LED indicator connected to FPGA Kintex 7 pins to monitor the processing VAD result.
+As device output I have used LED indicator connected to FPGA **Kintex 7** pins to monitor the processing VAD result.
 
 ## Project structure
 This repository contain sourse files for realization whole VAD system on FPGA and Jupyter Notebook for presentation result of the model processing, details of the extraction features and common pipeline model processing.
-Also I have used Vivado HLS intrument to implement DNN model in FPGA using C++.
+Also I have used *Vivado HLS* intrument to implement **DNN** model in FPGA using *C++*.
 It's a simple example of the model architecture description.
-The final result is user IP core, which implemented in the Vivado project.
+The final result is user IP core, which implemented in the *Vivado* project.
 
 In repository you can find saved model's weights and biases to use for implementation model in the FPGA structure using High-Level synthesis.
 It makes possible to change the parameters and strcture the machine learning model.
@@ -50,15 +50,15 @@ All calculations provided with help python_speech_features library, but when we 
 Steps to get MFCC:
 1. Pre-emphasis or filtering:
 
-A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the FFT and also improve the Signal-to-Noise Ratio (SNR).
+A pre-emphasis filter is useful in several ways: balance the frequency spectrum since high frequencies usually have smaller magnitudes compared to lower frequencies, avoid numerical problems during the **FFT** and also improve the **Signal-to-Noise** Ratio (**SNR**).
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;y(t)&space;=&space;x(t)&space;-&space;\alpha&space;x(t&space;-&space;1)" title="\bg_white y(t) = x(t) - \alpha x(t - 1)" />
 
-where x(t) - original (input) signal,
+where `x(t)` - original (input) signal,
 
-y(t) - preemphased (output) signal,
+`y(t)` - preemphased (output) signal,
 
-alpha - filter coefficient. Typical values are 0.95 - 0.97.
+`alpha` - filter coefficient. Typical values are 0.95 - 0.97.
 
 Bellow are the graphs of the signal before and after filtering:
 
@@ -79,18 +79,18 @@ Bellow is the graph of the single frame:
 
 After framing the signal, we apply a window function to each frame (In our case it's Hamming window function).
 
-There are several reasons why we need to apply a window function to the frames, notable to counteract the assumption made by the FFT that the data if infinite and to reduce spectral leakage.
+There are several reasons why we need to apply a window function to the frames, notable to counteract the assumption made by the **FFT** that the data if infinite and to reduce spectral leakage.
 
 4. Fourier-Transform and Power Spectrum:
 
-After windowing each frame we can do an N-point FFT on each frame to calculate the frequency spectrum, which is also called Short-Time Fourier-Transform (STFT).
+After windowing each frame we can do an N-point **FFT** on each frame to calculate the frequency spectrum, which is also called **Short-Time Fourier-Transform** (**STFT**).
 And then compute the power spectrum using the following equation:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;P&space;=&space;\frac{\left|&space;FFT(x_i)&space;\right|^2}{N}" title="\bg_white P = \frac{\left| FFT(x_i) \right|^2}{N}" />
 
-where x_i is the i-th frame of signal x(t),
+where `x_i` is the i-th frame of signal x(t),
 
-N - number of the points FFT.
+`N` - number of the points FFT.
 
 Bellow is the graph of the power spectrum:
 
@@ -223,7 +223,7 @@ I processed wav files with sampling rate is equal to 16000.
 
 ## Requirement
 ### Hardware:
-* Kintex 7 on the factory board (processing unit)
+* Kintex 7 (xc7ktffg900-2) on the factory board (processing unit)
 * ADC 16-bit with I2S interface on factory board (convertion analog audio)
 * MEMS micro or micro jack for debug audio from PC (input analog audio)
 * Resistor 500 Omh (for connection LED)
