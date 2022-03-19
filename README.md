@@ -222,7 +222,18 @@ So, I operated with preprocessed dataset. I have used data from [this](https://w
 I processed wav files with sampling rate is equal to 16000.
 
 ## Requirement
-Its already possible to add description
+### Hardware:
+* Kintex 7 on the factory board (processing unit)
+* ADC 16-bit with I2S interface on factory board (convertion analog audio)
+* MEMS micro or micro jack for debug audio from PC (input analog audio)
+* Resistor 500 Omh (for connection LED)
+* Red LED (for indication)
+
+### Soft:
+* Anaconda (Jupyter Notebook)
+* Visual Studio 2019
+* Vivado 2016.2
+* Vivado HLS 2016.2
 
 ## Processing result machine learning model
 In the modeling part we can select satisfying model structure for VAD.
