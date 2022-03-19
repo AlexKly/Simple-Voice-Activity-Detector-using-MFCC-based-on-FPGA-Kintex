@@ -88,7 +88,7 @@ And then compute the power spectrum using the following equation:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;P&space;=&space;\frac{\left|&space;FFT(x_i)&space;\right|^2}{N}" title="\bg_white P = \frac{\left| FFT(x_i) \right|^2}{N}" />
 
-where `x_i` is the i-th frame of signal x(t),
+where `x<sup>i</sup>` is the i-th frame of signal x(t),
 
 `N` - number of the points FFT.
 
