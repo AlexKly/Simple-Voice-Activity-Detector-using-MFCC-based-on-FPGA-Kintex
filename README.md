@@ -88,7 +88,7 @@ And then compute the power spectrum using the following equation:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;P&space;=&space;\frac{\left|&space;FFT(x_i)&space;\right|^2}{N}" title="\bg_white P = \frac{\left| FFT(x_i) \right|^2}{N}" />
 
-where `x<sup>i</sup>` is the i-th frame of signal x(t),
+where `x_i` is the i-th frame of signal x(t),
 
 `N` - number of the points FFT.
 
@@ -97,15 +97,15 @@ Bellow is the graph of the power spectrum:
 ![Power spectrum](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Power%20spectrum.PNG "Power spectrum")
 
 5. Energy on frame:
-After calculation power spectrum, we need to calculate energy per frame and to append to MFCC vector later.
+After calculation power spectrum, we need to calculate energy per frame and to append to **MFCC** vector later.
 
 To calculate energe om the frame, we use following equation:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;E&space;=&space;\sum_{i}^{FrameLength}P_i" title="\bg_white E = \sum_{i}^{FrameLength}P_i" />
 
-where P_i - power spectrum on the i-th frame,
+where `P_i` - power spectrum on the i-th frame,
 
-FrameLength - Samples number in the frame.
+`FrameLength` - Samples number in the frame.
 
 The graph of the energy changing on the frames is shown bellow:
 ![Energy of the signal](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/Energy%20on%20frame.PNG "Energy of the signal")
@@ -114,7 +114,7 @@ Eventually, we need to apply log operation to energy massive.
 
 6. Filter Banks:
 
-The final step to computing filter banks is applying triangular filters on a Mel-scale to the power spectrum to extract frequency bands.
+The final step to computing **filter banks** is applying triangular filters on a Mel-scale to the power spectrum to extract frequency bands.
 The Mel-scale aims to mimic the non-linear human ear perception of sound, by being more discriminative at lower frequencies and less discriminative at higher frequencies.
 We can convert between Hertz (f) and Mel (m) using the following equations:
 
@@ -137,31 +137,31 @@ After applying the filter bank to the power spectrum of the signal, we obtain th
 7. Mel-frequency Cepstral Coefficients (MFCCs):
 
 It turns out that filter bank coefficients computed in the previous step are highly correlated, which could be problematic in some machine learning algorithms.
-Therefore, we can apply Discrete Cosine Transform (DCT) to decorrelate the filter bank coefficients and yield a compressed representation of the filter banks.
+Therefore, we can apply **Discrete Cosine Transform** (**DCT**) to decorrelate the filter bank coefficients and yield a compressed representation of the filter banks.
 
-The resulting MFCCs:
+The resulting **MFCCs**:
 ![MFCCs](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/MFCC%20spectrogram.PNG "MFCCs")
 
 8. Deltas:
 
 Also known as differential and acceleration coefficients.
-The MFCC feature vector describes only the power spectral envelope of a single frame, but it seems like speech would also have information in the dynamics i.e. what are the trajectories of the MFCC coefficients over time.
-It turns out that calculating the MFCC trajectories and appending them to the original feature vector increases ASR performance by quite a bit (if we have 12 MFCC coefficients, we would also get 12 delta coefficients, which would combine to give a feature vector of length 24).
+The MFCC feature vector describes only the power spectral envelope of a single frame, but it seems like speech would also have information in the dynamics i.e. what are the trajectories of the **MFCC** coefficients over time.
+It turns out that calculating the **MFCC** trajectories and appending them to the original feature vector increases ASR performance by quite a bit (if we have 12 **MFCC** coefficients, we would also get 12 **delta** coefficients, which would combine to give a feature vector of length 24).
 
-To calculate the delta coefficients, the following formula is used:
+To calculate the **delta** coefficients, the following formula is used:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{120}&space;\bg_white&space;d_{t}&space;=&space;\frac{\sum_{n=1}^{N}n(c_{t&space;&plus;&space;n}&space;-&space;c_{t&space;-&space;n})}{2\sum_{n=1}^{N}n^{2}}" title="\bg_white d_{t} = \frac{\sum_{n=1}^{N}n(c_{t + n} - c_{t - n})}{2\sum_{n=1}^{N}n^{2}}" />
 
-where d_t is a delta coefficient, from frame t computed in terms of the static coefficients c_{t+N}  to c_{t-N}.
-A typical value for N is 2. Delta-Delta (Acceleration) coefficients are calculated in the same way, but they are calculated from the deltas, not the static coefficients.
+where `d_t` is a delta coefficient, from frame t computed in terms of the static coefficients `c_{t+N}`  to `c_{t-N}`.
+A typical value for `N` is 2. **Delta-Delta** (*Acceleration*) coefficients are calculated in the same way, but they are calculated from the **deltas**, not the static coefficients.
 
-The result combined MFCC and Delta-Delta is shown bellow:
+The result combined **MFCC** and **Delta-Delta** is shown bellow:
 ![MFCC + Deltas](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/MFCC%20pipeline%20graphics/MFCC%2BDeltas%20spectrogram.PNG "MFCC + Deltas")
 
 ### C++: Vivado HLS implemantation
-The Vivado HLS is quick and quiet simple approach to implement the DNN model in FPGA.
+The *Vivado HLS* is quick and quiet simple approach to implement the **DNN** model in FPGA.
 When the model is learnt you can get model's weights and biases.
-Next, you can code `predict()` funtion (forward propagation) using C++.
+Next, you can code `predict()` funtion (forward propagation) using *C++*.
 
 After ascertain that C++ code works right, we can go to the next step.
 The Vivado HLS generate achive with your model implementaion like a archive which you can use in the Vivado project.
