@@ -163,8 +163,8 @@ The *Vivado HLS* is quick and quiet simple approach to implement the **DNN** mod
 When the model is learnt you can get model's weights and biases.
 Next, you can code `predict()` funtion (forward propagation) using *C++*.
 
-After ascertain that C++ code works right, we can go to the next step.
-The Vivado HLS generate achive with your model implementaion like a archive which you can use in the Vivado project.
+After ascertain that *C++* code works right, we can go to the next step.
+The *Vivado HLS* generate achive with your model implementaion like a archive which you can use in the *Vivado* project.
 
 Below is shown resources required by the module and module's structure of the input/output ports:
 
@@ -172,28 +172,28 @@ Below is shown resources required by the module and module's structure of the in
 
 ![Interface](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20HLS%20Sythesis%20Summary/Interface.PNG)
 
-It's really not optimized method for design, but I use the Kintex 7 and I don't worry about resourser in my test project because it has really a huge logic unit number.
+It's really not optimized method for design, but I use the **Kintex 7** and I don't worry about resourser in my test project because it has really a huge logic unit number.
 
-Also I attached links to tutorial how to use Vivado HLS: 
+Also I attached links to tutorial how to use *Vivado HLS*: 
 * [Tutorial](https://www.so-logic.net/documents/upload/Basic_HLS_Tutorial.pdf)
 * [Xilinx documentation](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2014_2/ug871-vivado-high-level-synthesis-tutorial.pdf)
 
 Later, it will be described how to add the generated module to the project.
 
 ### FPGA: VAD realization
-I divided the Vivado project on the parts.
+I divided the *Vivado* project on the parts.
 I attached the image below for more comfortable learning the structure.
 
 ![Project structure](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Project%20structure.drawio.png "Project structure")
 
 #### Vivado project structure:
-* Common modules: main file (Vega_submain.v) and I2S receiver (capture_audio_sample.v)
-* MFCC features pipeline part: you can find in 'Calculation MFCC features' for calculation MFCC features and delta for model's inputs
-* Machine learning pipeline part: implementation DNN module like a IP core generated using Vivado HLS
-* IP cores: all IP cores using in this project
-* TestBench: file (tb_Vega_submain.vhd) to test the whole project
+* **Common modules**: main file (***Vega_submain.v***) and **I2S receiver** (***capture_audio_sample.v***)
+* **MFCC features pipeline part**: you can find in ***'Calculation MFCC features'*** for calculation **MFCC** features and **delta** for model's inputs
+* **Machine learning pipeline part**: implementation **DNN** module like a IP core generated using *Vivado HLS*
+* **IP cores**: all IP cores using in this project
+* **TestBench**: file (***tb_Vega_submain.vhd***) to test the whole project
 
-The intance of the LED indication using DNN solver signal:
+The intance of the LED indication using **DNN** solver signal:
 ~~~
 VAD_module: Vega_submain
     port map (
@@ -223,32 +223,32 @@ I processed wav files with sampling rate is equal to 16000.
 
 ## Requirement
 ### Hardware:
-* Kintex 7 (xc7ktffg900-2) on the factory board (processing unit)
-* ADC 16-bit with I2S interface on factory board (convertion analog audio)
-* MEMS micro or micro jack for debug audio from PC (input analog audio)
-* Resistor 500 Omh (for connection LED)
+* **Kintex 7** (***xc7ktffg900-2***) on the factory board (processing unit)
+* **ADC 16-bit** with **I2S** interface on factory board (convertion analog audio)
+* **MEMS microphone** or **micro jack** for debug audio from PC (input analog audio)
+* Resistor **500 Omh** (for connection LED)
 * Red LED (for indication)
 
 ### Soft:
-* Anaconda (Jupyter Notebook)
-* Visual Studio 2019
-* Vivado 2016.2
-* Vivado HLS 2016.2
+* *Anaconda (Jupyter Notebook)*
+* *Visual Studio 2019*
+* *Vivado 2016.2*
+* *Vivado HLS 2016.2*
 
 ## Processing result machine learning model
-In the modeling part we can select satisfying model structure for VAD.
-In the *DNN modeling.ipynb* I perform preparation data to fit the model and estimate results several DNN structures.
-The binary classification mean accuracy is fluacting between 0.8 - 0.9 depended from structure.
-I have used accuracy and ROC-AUC metrics to estimate models.
+In the modeling part we can select satisfying model structure for **VAD**.
+In the ***DNN modeling.ipynb*** I perform preparation data to fit the model and estimate results several **DNN** structures.
+The binary classification mean **accuracy** is fluacting between **0.8 - 0.9** depended from structure.
+I have used accuracy and **ROC-AUC** metrics to estimate models.
 
-You can see plots with result of the processing VAD alghorithm on the validation real signal and ROC-AUC curves for several estimated models.
+You can see plots with result of the processing **VAD** alghorithm on the validation real signal and **ROC-AUC curves** for several estimated models.
 
 ![VAD result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/VAD%20result.PNG)
 
 ![ROC-AUC curve](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/DNN%20modeling/AUC-ROC%20result.PNG)
 
-In the *DNN modeling.ipynb* I prepared printing the C++ arrays with model weights to simplify transfer it in C++ code.
-You can see that the DNN processing results is not perfect and there are enough Type I errors (False positive) and Type II errors (False negative), but it's appropriate for me.
+In the ***DNN modeling.ipynb*** I prepared printing the *C++* arrays with model weights to simplify transfer it in *C++* code.
+You can see that the **DNN** processing results is not perfect and there are enough **Type I errors** (***False positive***) and **Type II errors** (***False negative***), but it's appropriate for me.
 
 ## Implemantation result Vivado HLS
 Not yet
