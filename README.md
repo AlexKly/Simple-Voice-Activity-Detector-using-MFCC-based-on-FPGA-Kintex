@@ -286,14 +286,17 @@ Second order of  delta MFCC result. First frame of the counter: 0.05386912 0.027
 DNN prediction result. First frame of the counter: 0
 ~~~
 
+Start of the MFCC + Delta-Delta conversation:
+![Start conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20Start.PNG)
 
-MFCC pics
+End of the MFCC + Delta-Delta conversation:
+![End conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20End.PNG)
 
-DELTA MFCC pics
+DNN interface and processing:
+![DNN processing](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20processing.PNG)
 
-DELTA-DELTA MFCC pics
-
-DNN pics
+Output result of the DNN:
+![DNN result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20result.PNG)
 
 ## Demonstration and results
 Not yet
