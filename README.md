@@ -252,11 +252,11 @@ You can see that the **DNN** processing results is not perfect and there are eno
 
 ## Simulation the FPGA realization
 Checking the correct operation of the architecture occurs by influencing the input of the model with a counter that increases by 1 at each step (cycle).
-Comparing the Python realization and FPGA simulation is giving partly aprovment of the correct algorithm operation.
-So, lets to compare results for MFCC, delta and DNN processing.
-Below, is shown images of the simulation FPGA realization and comparison with operation Python's frameworks.
+Comparing the *Python* realization and FPGA simulation is giving partly aprovment of the correct algorithm operation.
+So, lets to compare results for **MFCC**, **delta** and **DNN** processing.
+Below, is shown images of the simulation *FPGA* realization and comparison with operation *Python's* frameworks.
 
-Example code of the counter processing (for first frame):
+Example *Python* code of the counter processing (for first frame):
 ~~~
 test_input = np.linspace(0, 65535, 65536)
 test_features = mfcc(test_input,
@@ -286,20 +286,20 @@ Second order of  delta MFCC result. First frame of the counter: 0.05386912 0.027
 DNN prediction result. First frame of the counter: 0
 ~~~
 
-Start of the result MFCC + Delta-Delta conversation:
+Start of the result **MFCC + Delta-Delta** conversation:
 ![Start conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20Start.PNG)
 
-End of the result MFCC + Delta-Delta conversation:
+End of the result **MFCC + Delta-Delta** conversation:
 ![End conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20End.PNG)
 
-`tvalid_SVM` - valid flag of the result MFCC + delta-delta MFCC processing.
+`tvalid_SVM` - valid flag of the result **MFCC + delta-delta MFCC** processing.
 
-`SVM` - result MFCC + delta-delta MFCC processing.
+`SVM` - result **MFCC + delta-delta MFCC** processing.
 
-DNN interface and processing:
+*DNN* interface and processing:
 ![DNN processing](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20processing.PNG)
 
-Output result of the DNN:
+Output result of the *DNN*:
 ![DNN result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20result.PNG)
 
 `mfcc_ce0` - latch of the input data on each clock (**output**).
@@ -322,11 +322,19 @@ Output result of the DNN:
 
 `mfcc_q0[31:0]` - input data port in float32 format (**input**).
 
-So, you need to take prediction `ap_return[31:0]` from DNN module using `ap_done` valid signal.
-Next, you can use `ap_done` as latch if you will use DNN result in further processing.
+So, you need to take prediction `ap_return[31:0]` from *DNN* module using `ap_done` valid signal.
+Next, you can use `ap_done` as latch if you will use *DNN* result in further processing.
 
 ## Demonstration and results
+In the table you can see resources that *FPGA* spent for *DNN*.
+Mainly, it's **LUTs** and **multipliers** (**DSPs**)
 ![DNN used resources](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20design/DNN%20used%20resources.PNG)
+
+After sythesis all project we got Bitstream file for programming device.
+
+Bellow you can see results of the processing algorithm in real time:
+
+(PASTE HERE VIDEO OR GIFS OF THE DEVICE PROCESSING)
 
 ## Extra
 Not yet
