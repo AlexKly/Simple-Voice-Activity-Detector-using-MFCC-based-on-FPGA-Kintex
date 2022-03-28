@@ -326,7 +326,7 @@ So, you need to take prediction `ap_return[31:0]` from DNN module using `ap_done
 Next, you can use `ap_done` as latch if you will use DNN result in further processing.
 
 ## Demonstration and results
-Not yet
+![DNN used resources](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20design/DNN%20used%20resources.PNG)
 
 ## Extra
 Not yet
