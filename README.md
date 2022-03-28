@@ -299,6 +299,7 @@ DNN interface and processing:
 
 Output result of the DNN:
 ![DNN result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20result.PNG)
+
 `mfcc_ce0` - latch of the input data on each clock (output)
 
 `ap_clk` - clock signal (input)
