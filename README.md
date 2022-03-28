@@ -250,11 +250,50 @@ You can see plots with result of the processing **VAD** alghorithm on the valida
 In the ***DNN modeling.ipynb*** I prepared printing the *C++* arrays with model weights to simplify transfer it in *C++* code.
 You can see that the **DNN** processing results is not perfect and there are enough **Type I errors** (***False positive***) and **Type II errors** (***False negative***), but it's appropriate for me.
 
-## Implemantation result Vivado HLS
-Not yet
-
 ## Simulation the FPGA realization
-Not yet
+Checking the correct operation of the architecture occurs by influencing the input of the model with a counter that increases by 1 at each step (cycle).
+Comparing the Python realization and FPGA simulation is giving partly aprovment of the correct algorithm operation.
+So, lets to compare results for MFCC, delta and DNN processing.
+Below, is shown images of the simulation FPGA realization and comparison with operation Python's frameworks.
+
+Example code of the counter processing (for first frame):
+~~~
+test_input = np.linspace(0, 65535, 65536)
+test_features = mfcc(test_input,
+                     SAMPLE_RATE,
+                     winlen=FRAME_LENGTH,
+                     winstep=FRAME_STEP,
+                     numcep=NFEATURES,
+                     nfilt=NFILTERS,
+                     nfft=NFFT,
+                     lowfreq=0,
+                     highfreq=None,
+                     preemph=PREEMPHASIS_COEF,
+                     ceplifter=CEPLIFTER,
+                     appendEnergy=APPEND_ENERGY,
+                     winfunc=WINDOW_FUNCTION)
+d_test_features = delta(test_features, N=2)
+d2_test_features = delta(d_test_features, N=2)
+test_features_deltas = np.hstack((test_features, d_test_features, d2_test_features))
+pred = model.predict(test_features_deltas)
+~~~
+
+Results of the counter processing (for first frame):
+~~~
+MFCC result. First frame of the counter: 10.45426599 21.31225632 16.06946506 15.04146288 16.36829557 16.91198305 18.26702311 18.23718373 18.41393675 17.85163217 17.92255124 17.04174921 16.01008549
+First order of  delta MFCC result. First frame of the counter: 0.39108477 0.40589755 0.27888866 0.58250356 0.61608484 0.76784735 0.82442396 0.90298802 0.9289716  0.95048831 0.93405364 0.90662207 0.85006181
+Second order of  delta MFCC result. First frame of the counter: 0.05386912 0.02714361 0.06751415 0.07705067 0.10155177 0.1143419 0.12899826 0.13723392 0.143734   0.14520386 0.14398903 0.13859931 0.13072916
+DNN prediction result. First frame of the counter: 0
+~~~
+
+
+MFCC pics
+
+DELTA MFCC pics
+
+DELTA-DELTA MFCC pics
+
+DNN pics
 
 ## Demonstration and results
 Not yet
