@@ -286,15 +286,15 @@ Second order of  delta MFCC result. First frame of the counter: 0.05386912 0.027
 DNN prediction result. First frame of the counter: 0
 ~~~
 
-Start of the MFCC + Delta-Delta conversation:
+Start of the result MFCC + Delta-Delta conversation:
 ![Start conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20Start.PNG)
 
-End of the MFCC + Delta-Delta conversation:
+End of the result MFCC + Delta-Delta conversation:
 ![End conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20End.PNG)
 
-`tvalid_SVM` - valid flag of the result MFCC + delta-delta MFCC processing
+`tvalid_SVM` - valid flag of the result MFCC + delta-delta MFCC processing.
 
-`SVM` - result MFCC + delta-delta MFCC processing
+`SVM` - result MFCC + delta-delta MFCC processing.
 
 DNN interface and processing:
 ![DNN processing](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20processing.PNG)
@@ -302,25 +302,28 @@ DNN interface and processing:
 Output result of the DNN:
 ![DNN result](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/DNN%20result.PNG)
 
-`mfcc_ce0` - latch of the input data on each clock (output)
+`mfcc_ce0` - latch of the input data on each clock (**output**).
 
-`ap_clk` - clock signal (input)
+`ap_clk` - clock signal (**input**).
 
-`ap_rst` - reset signal: 1'b1 - active, 1'b0 - disable (input)
+`ap_rst` - reset signal: **1'b1** - active, **1'b0** - disable (**input**).
 
-`ap_start` - valid signal when input data is going (input)
+`ap_start` - valid signal when input data is going (**input**).
 
-`ap_done` - valid signal when you can take DNN result (output)
+`ap_done` - valid signal when you can take DNN result (**output**).
 
-`ap_idle` - signal when DNN is waiting data (output)
+`ap_idle` - signal when DNN is waiting data (**output**).
 
-`ap_ready` - same with `ap_done` (output)
+`ap_ready` - same with `ap_done` (**output**).
 
-`ap_return[31:0]` - output data in integer format. We will expect 1 or 0 (output)
+`ap_return[31:0]` - output data in integer format. We will expect **1** or **0** (**output**).
 
-`ap_address[5:0]` - counter of the input data. Count to 39 (output)
+`ap_address[5:0]` - counter of the input data. Count to **39** (**output**).
 
-`mfcc_q0[31:0]` - input data port in float32 format (input)
+`mfcc_q0[31:0]` - input data port in float32 format (**input**).
+
+So, you need to take prediction `ap_return[31:0]` from DNN module using `ap_done` valid signal.
+Next, you can use `ap_done` as latch if you will use DNN result in further processing.
 
 ## Demonstration and results
 Not yet
