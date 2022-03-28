@@ -291,7 +291,9 @@ Start of the MFCC + Delta-Delta conversation:
 
 End of the MFCC + Delta-Delta conversation:
 ![End conversation](https://github.com/AlexKly/Simple-Voice-Activity-Detector-using-MFCC-based-on-FPGA-Kintex/blob/master/Docs/Vivado%20sim/MFCC%20%2B%20delta-delta%20End.PNG)
+
 `tvalid_SVM` - valid flag of the result MFCC + delta-delta MFCC processing
+
 `SVM` - result MFCC + delta-delta MFCC processing
 
 DNN interface and processing:
