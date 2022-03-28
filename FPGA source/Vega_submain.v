@@ -27,8 +27,8 @@ module Vega_submain(
     input wclk,
     input d_audio,
     
-    output LSVC_Done,
-    output LSVC_Result
+    output DNN_Done,
+    output DNN_Result
     );
     
     // I2S interface capture:
@@ -42,6 +42,17 @@ module Vega_submain(
     // Features for VAD:
     wire tready_mfcc_vector_features;
     wire [31:0] mfcc_vector_features;
+    
+    // Dense Neural Net:
+    wire dnn_0_ce0;
+    wire dnn_0_done;
+    wire dnn_0_idle;
+    wire dnn_0_ready;
+    wire [31:0] dnn_0_return;
+    wire [5:0] dnn_0_address0;
+    
+    reg dnn_output_done;
+    reg dnn_output;
     
     // I2S interface capture:
     capture_audio_sample I2S_interface_capture (
@@ -70,6 +81,7 @@ module Vega_submain(
         .mfcc_vector_features(mfcc_vector_features)
     );
     
+    /*
     pipeline make_pipeline (
         .clk(g_fast_clk),
         .rst(1'b0),
@@ -77,6 +89,21 @@ module Vega_submain(
         .mfcc_feat(mfcc_vector_features),
         .tvalid_prediction(tvalid_prediction),
         .prediction(prediction)
+    );
+    */
+    
+    // Dense Neural Net:
+    DNN_0 DenseNetwork (
+        .mfcc_ce0(dnn_0_ce0),
+        .ap_clk(g_fast_clk),
+        .ap_rst(1'b0),
+        .ap_start(tready_mfcc_vector_features),
+        .ap_done(dnn_0_done),
+        .ap_idle(dnn_0_idle),
+        .ap_ready(dnn_0_ready),
+        .ap_return(dnn_0_return),
+        .mfcc_address0(dnn_0_address0),
+        .mfcc_q0(mfcc_vector_features)
     );
     
     // Debuger:
@@ -89,7 +116,22 @@ module Vega_submain(
         .probe4(sample16)
     );
     
-    assign LSVC_Done    = tvalid_prediction;
-    assign LSVC_Result  = prediction;
+    always@ (posedge g_fast_clk) begin
+        if (dnn_0_done) begin
+            dnn_output_done <= 1'b1;
+            if (dnn_0_return == 32'h3f800000) begin 
+                dnn_output <= 1'b1;
+            end
+            else begin
+                dnn_output <= 1'b0;
+            end
+        end
+        else begin
+            dnn_output_done <= 1'b0;
+        end
+    end
+    
+    assign DNN_Done    = dnn_output_done;
+    assign DNN_Result  = dnn_output;
    
 endmodule

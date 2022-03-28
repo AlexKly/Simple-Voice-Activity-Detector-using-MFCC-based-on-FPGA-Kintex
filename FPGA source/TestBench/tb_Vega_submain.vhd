@@ -41,35 +41,31 @@ architecture Behavioral of tb_Vega_submain is
     component Vega_submain
         port (
             g_fast_clk      : in std_logic;
-            g_fast_clk_x2   : in std_logic;
             bclk            : in std_logic;
             wclk            : in std_logic;
             d_audio         : in std_logic;
-            clf_MLP_Done    : out std_logic;
-            clf_MLP_Result  : out std_logic_vector(31 downto 0)
+            DNN_Done        : out std_logic;
+            DNN_Result      : out std_logic
         );
     end component;
     
     -- Inputs:
-    signal g_fast_clk       : std_logic := '0';
-    signal g_fast_clk_x2    : std_logic := '0';
-    signal bclk             : std_logic := '0';
-    signal wclk             : std_logic := '0';
-    signal d_audio          : std_logic := '0';
+    signal g_fast_clk           : std_logic := '0';
+    signal bclk                 : std_logic := '0';
+    signal wclk                 : std_logic := '0';
+    signal d_audio              : std_logic := '0';
     
     -- Outputs:
-    signal clf_MLP_Done     : std_logic;
-    signal clf_MLP_Result   : std_logic_vector(31 downto 0);
+    signal DNN_Done             : std_logic;
+    signal DNN_Result           : std_logic;
     
-    signal reg_tmp              : std_logic_vector(15 downto 0);
+    -- Others:
     signal gen_bits             : std_logic_vector(15 downto 0) := (others => '0');
-    signal reg_serial_stream    : std_logic_vector(15 downto 0);
-    signal cnt_bits             : std_logic_vector(3 downto 0) := (others => '0');
     
-    constant g_fast_clk_period      : time := 18.518 ns;
-    constant g_fast_clk_x2_period   : time := 9.259 ns;
-    constant bclk_period            : time := 1.953125 us;
-    constant wclk_period            : time := 62.5 us;
+    -- Timing constants:
+    constant g_fast_clk_period  : time := 9.259 ns;
+    constant bclk_period        : time := 1.953125 us;
+    constant wclk_period        : time := 62.5 us;
 
 begin
 
@@ -79,13 +75,6 @@ begin
         g_fast_clk <= '1';
             wait for g_fast_clk_period / 2;    
     end process g_fast_clk_proc;
-    
-    g_fast_clk_x2_proc : process begin
-        g_fast_clk_x2 <= '0';
-            wait for g_fast_clk_x2_period / 2;
-        g_fast_clk_x2 <= '1';
-            wait for g_fast_clk_x2_period / 2;
-    end process g_fast_clk_x2_proc;
 
     bclk_proc: process begin
         bclk <= '0';
@@ -103,7 +92,7 @@ begin
     
     gen_bits_proc: process(wclk, bclk) begin
         if falling_edge(wclk) then
-            gen_bits <= gen_bits + '1';
+            gen_bits                <= gen_bits + '1';
         end if;
         
         if falling_edge(bclk) then
@@ -113,27 +102,14 @@ begin
     end process gen_bits_proc;
     d_audio <= gen_bits(15);
     
-    --serial_stream_proc: process(bclk) begin
-    --    if falling_edge(bclk) then
-    --        if wclk = '0' then
-    --            reg_serial_stream(15 downto 1)  <= reg_serial_stream(14 downto 0);
-    --            d_audio                         <= reg_serial_stream(15);
-    --        else
-    --            reg_serial_stream   <= gen_bits;
-    --            d_audio             <= '0';
-    --        end if;
-    --    end if;
-    --end process serial_stream_proc;
-    
     uut_main: Vega_submain
         port map (
-            g_fast_clk      => g_fast_clk,
-            g_fast_clk_x2   => g_fast_clk_x2,
-            bclk            => bclk,
-            wclk            => wclk,
-            d_audio         => d_audio,
-            clf_MLP_Done    => clf_MLP_Done,
-            clf_MLP_Result  => clf_MLP_Result
+            g_fast_clk  => g_fast_clk,
+            bclk        => bclk,
+            wclk        => wclk,
+            d_audio     => d_audio,
+            DNN_Done    => DNN_Done,
+            DNN_Result  => DNN_Result
         );
 
 end Behavioral;
