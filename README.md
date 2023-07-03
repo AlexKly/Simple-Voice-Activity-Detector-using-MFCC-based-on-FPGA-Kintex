@@ -11,7 +11,7 @@ However, the huge reserves of Kintex resourses make it possible to try different
 The need to implement this algoritm based on FPGA is closely related to the need of the realization whole complex Speech Recognition system for the Smart Home tasks.
 And further works I will use more complex Deep Learning models to classification speech and more optimized structure for realization on FPGA.
 
-You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https://github.com/AlexKly/VegaVAD).
+~~You can find the new version with ***BiLSTM*** and ***CNN-BiLSTM*** [here](https://github.com/AlexKly/VegaVAD).~~
 
 ## Description
 **In this project I don't attach HDL code for conversion process input analog signal from microphone using ADC (Analog-Digital Converter)**. I used ADC **16-bit 16kHz** with **I2S** interface for getting digital samples.
@@ -332,10 +332,7 @@ Mainly, it's **LUTs** and **multipliers** (**DSPs**)
 
 After sythesis all project we got Bitstream file for programming device.
 
-Bellow you can see results of the processing algorithm in real time:
+Bellow you can see results of the processing algorithm in real time
+([video sample](https://www.youtube.com/watch?v=2-c_Zs0ZAy4) for test):
 
-(PASTE HERE VIDEO OR GIFS OF THE DEVICE PROCESSING)
-
-## Extra
-Not yet
-
+![Kintex7 Demo](Docs/Real%20demo/Kintex7_VAD_demo.gif)
